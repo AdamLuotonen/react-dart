@@ -128,7 +128,7 @@ ReactComponentFactory _reactDom(String name) {
        * if element is not pair, then close it
        */
       if (_unPairElements.contains(name)) {
-        result.write(">");
+        result.write("/>");
       } else {
         /**
          * close open tag
@@ -204,7 +204,7 @@ String _parseDomArgument(String key, dynamic value) {
 
   if (key == "style" && value is Map) {
     Map style = value;
-    value = style.keys.map((key) => "$key:${style[key]};").join("");
+    value = style.keys.map((key) => _parseDomStyleArgument(key, style[key])).join("");
   }
 
   if(key == 'value' && value is List) {
@@ -214,6 +214,23 @@ String _parseDomArgument(String key, dynamic value) {
 
   value = _escapeTextForBrowser(value);
   return " ${key.toLowerCase()}=\"${value}\"";
+}
+
+String _parseDomStyleArgument(String key, String value) {
+  if (key == 'strokeWidth')
+    key = 'stroke-width';
+  if (key == 'alignmentBaseline')
+    key = 'alignment-baseline';
+  if (key == 'textAnchor')
+    key = 'text-anchor';
+  if (key == 'fontSize')
+    key = 'font-size';
+  if (key == 'fontWeight')
+    key = 'font-weight';
+  if (key == 'fontFamily')
+    key = 'font-family';
+
+  return key + ':' + value + ';';
 }
 
 var _ESCAPE_LOOKUP = {
