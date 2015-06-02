@@ -504,11 +504,11 @@ Set _syntheticUIEvents = new Set.from(["onScroll",]);
 Set _syntheticWheelEvents = new Set.from(["onWheel",]);
 
 
-void _render(JsObject component, HtmlElement element) {
+void _render(JsObject component, element) {
   _React.callMethod('render', [component, element]);
 }
 
-bool _unmountComponentAtNode(HtmlElement element) {
+bool _unmountComponentAtNode(element) {
   return _React.callMethod('unmountComponentAtNode', [element]);
 }
 
