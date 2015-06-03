@@ -288,7 +288,7 @@ Set _pairElements = new Set.from(["a", "abbr", "address", "article", "aside", "a
     "ul", "variable", "video",
     /** SVG elements */
     "defs", "g", "linearGradient", "mask", "pattern", "radialGradient", "svg", "text",
-    "tspan",]);
+    "tspan","line", "ellipse"]);
 
 /**
  * set of empty elements tags based on http://www.w3.org/TR/html-markup/syntax.html#void-element
@@ -296,7 +296,7 @@ Set _pairElements = new Set.from(["a", "abbr", "address", "article", "aside", "a
 Set _unPairElements = new Set.from(["area", "base", "br", "col", "hr", "img", "input", "link",
     "meta", "param", "command", "embed", "keygen", "source","track", "wbr",
     /** SVG elements */
-    "circle", "ellipse", "line", "path", "polygon", "polyline", "rect", "stop",]);
+    "circle", "path", "polygon", "polyline", "rect", "stop",]);
 
 
 /**
@@ -340,6 +340,9 @@ _adler32(String data) {
     a = (a + data.codeUnitAt(i)) % _MOD;
     b = (b + a) % _MOD;
   }
+//  print(data);
+//  print(a.toString());
+//  print(b.toString());
   var A = new Int32x4(a, 0, 0, 0);
   var B = new Int32x4(b << 16, 0, 0, 0);
   return (A | B).x;
