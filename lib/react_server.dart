@@ -8,6 +8,7 @@ import "package:react/react.dart";
 import "dart:math";
 import "package:quiver/iterables.dart";
 import 'dart:typed_data';
+import 'dart:convert';
 
 /**
  * important constants geted from react.js needed to create correct checksum
@@ -128,7 +129,7 @@ ReactComponentFactory _reactDom(String name) {
        * if element is not pair, then close it
        */
       if (_unPairElements.contains(name)) {
-        result.write("/>");
+        result.write(">");
       } else {
         /**
          * close open tag
@@ -256,7 +257,7 @@ String _escaper(Match match) {
  * @return {string} An escaped string.
  */
 String _escapeTextForBrowser(text) {
-  return ('' + text).replaceAllMapped(_ESCAPE_REGEX, _escaper);
+  return text; // ('' + text).replaceAllMapped(_ESCAPE_REGEX, _escaper);
 }
 
 /**
@@ -318,6 +319,7 @@ String _createRootId() {
  */
 String _addChecksumToMarkup(String markup) {
   var checksum = _adler32(markup);
+  print("Server:" + checksum.toString());
   return markup.replaceFirst(
       '>',
       ' $_CHECKSUM_ATTR_NAME="$checksum">'
@@ -342,6 +344,7 @@ _adler32(String data) {
   var B = new Int32x4(b << 16, 0, 0, 0);
   return (A | B).x;
 }
+
 
 void setServerConfiguration() {
   setReactConfiguration(_reactDom, _registerComponent, null, _renderComponentToString, null, null);
