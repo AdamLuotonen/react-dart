@@ -2,7 +2,6 @@ library react.test_utils;
 
 import 'dart:js';
 import 'dart:html';
-import 'package:react/react.dart';
 import "package:react/react_client.dart";
 
 
@@ -352,7 +351,6 @@ JsObject scryRenderedDOMComponentsWithTag(JsObject tree, String tagName) {
 
 /// Render a Component into a detached DOM node in the document.
 JsObject renderIntoDocument(JsObject instance) {
-  var div = new DivElement();
   return _TestUtils.callMethod('renderIntoDocument', [instance]);
 }
 

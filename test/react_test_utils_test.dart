@@ -16,8 +16,8 @@ void main() {
 
   var component;
   var domNode;
-  var _React = context['React'];
-  var _Object = context['Object'];
+//  var _React = context['React'];
+//  var _Object = context['Object'];
 
   void testEvent(Function event, String eventName) {
     component = renderIntoDocument(eventComponent({}));

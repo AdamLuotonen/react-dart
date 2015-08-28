@@ -8,7 +8,6 @@ import "package:react/react.dart";
 import "dart:math";
 import "package:quiver/iterables.dart";
 import 'dart:typed_data';
-import 'dart:convert';
 
 /**
  * important constants geted from react.js needed to create correct checksum
@@ -230,7 +229,8 @@ String _parseDomStyleArgument(String key, String value) {
     key = 'font-weight';
   if (key == 'fontFamily')
     key = 'font-family';
-
+  if (key == 'paddingLeft')
+    key = 'padding-left';
   return key + ':' + value + ';';
 }
 
@@ -245,9 +245,9 @@ var _ESCAPE_LOOKUP = {
 
 var _ESCAPE_REGEX = new RegExp('[&><\\\'/]');
 
-String _escaper(Match match) {
-  return _ESCAPE_LOOKUP[match.group(0)];
-}
+//String _escaper(Match match) {
+//  return _ESCAPE_LOOKUP[match.group(0)];
+//}
 
 /**
  * Escapes text to prevent scripting attacks.
