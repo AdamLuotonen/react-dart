@@ -231,6 +231,8 @@ String _parseDomStyleArgument(String key, String value) {
     key = 'font-family';
   if (key == 'paddingLeft')
     key = 'padding-left';
+  if (key == 'marginBottom')
+    key = 'margin-bottom';
   return key + ':' + value + ';';
 }
 
