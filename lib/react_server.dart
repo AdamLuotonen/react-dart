@@ -233,6 +233,8 @@ String _parseDomStyleArgument(String key, String value) {
     key = 'padding-left';
   if (key == 'marginBottom')
     key = 'margin-bottom';
+  if (key == 'marginTop')
+    key = 'margin-top';
   return key + ':' + value + ';';
 }
 
