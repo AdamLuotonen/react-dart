@@ -235,6 +235,8 @@ String _parseDomStyleArgument(String key, String value) {
     key = 'margin-bottom';
   if (key == 'marginTop')
     key = 'margin-top';
+  if (key == 'fillOpacity')
+    key = 'fill-opacity';
   return key + ':' + value + ';';
 }
 
