@@ -128,7 +128,7 @@ ReactComponentFactory _reactDom(String name) {
        * if element is not pair, then close it
        */
       if (_unPairElements.contains(name)) {
-        result.write(">");
+        result.write("/>");
       } else {
         /**
          * close open tag
