@@ -202,6 +202,10 @@ String _parseDomArgument(String key, dynamic value) {
     key = 'for';
   }
 
+  if (key == "httpEquiv") {
+    key = 'http-equiv';
+  }
+
   if (key == "style" && value is Map) {
     Map style = value;
     value = style.keys.map((key) => _parseDomStyleArgument(key, style[key])).join("");
