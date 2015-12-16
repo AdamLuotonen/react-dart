@@ -188,23 +188,8 @@ String _parseDomArgument(String key, dynamic value) {
   if(key == 'key') return null;
   if(key == 'ref') return null;
 
-  /**
-   * change "className" for class
-   */
-  if (key == "className") {
-    key = 'class';
-  }
-
-  /**
-   * change "htmlFor" for "for"
-   */
-  if (key == "htmlFor") {
-    key = 'for';
-  }
-
-  if (key == "httpEquiv") {
-    key = 'http-equiv';
-  }
+  if (_ATTRIBUTE_LOOKUP.containsKey(key))
+    key = _ATTRIBUTE_LOOKUP[key];
 
   if (key == "style" && value is Map) {
     Map style = value;
@@ -221,30 +206,36 @@ String _parseDomArgument(String key, dynamic value) {
 }
 
 String _parseDomStyleArgument(String key, String value) {
-  if (key == 'strokeWidth')
-    key = 'stroke-width';
-  if (key == 'alignmentBaseline')
-    key = 'alignment-baseline';
-  if (key == 'textAnchor')
-    key = 'text-anchor';
-  if (key == 'fontSize')
-    key = 'font-size';
-  if (key == 'fontWeight')
-    key = 'font-weight';
-  if (key == 'fontFamily')
-    key = 'font-family';
-  if (key == 'paddingLeft')
-    key = 'padding-left';
-  if (key == 'marginBottom')
-    key = 'margin-bottom';
-  if (key == 'marginTop')
-    key = 'margin-top';
-  if (key == 'fillOpacity')
-    key = 'fill-opacity';
+  if (_STYLE_LOOKUP.containsKey(key))
+    key = _STYLE_LOOKUP[key];
   return key + ':' + value + ';';
 }
 
-var _ESCAPE_LOOKUP = {
+Map<String, String> _ATTRIBUTE_LOOKUP = {
+  'className': 'class',
+  'htmlFor': 'for',
+  'httpEquiv': 'http-equiv'
+};
+
+Map<String, String> _STYLE_LOOKUP = {
+  'strokeWidth': 'stroke-width',
+  'alignmentBaseline': 'alignment-baseline',
+  'textAnchor': 'text-anchor',
+  'fontSize': 'font-size',
+  'fontWeight': 'font-weight',
+  'fontFamily': 'font-family',
+  'paddingBottom': 'padding-bottom',
+  'paddingTop': 'padding-top',
+  'paddingLeft': 'padding-left',
+  'paddingRight': 'padding-right',
+  'marginBottom': 'margin-bottom',
+  'marginTop': 'margin-top',
+  'marginLeft': 'margin-left',
+  'marginRight': 'margin-right',
+  'fillOpacity': 'fill-opacity',
+};
+
+Map<String, String> _ESCAPE_LOOKUP = {
   "&": "&amp;",
   ">": "&gt;",
   "<": "&lt;",
@@ -253,7 +244,7 @@ var _ESCAPE_LOOKUP = {
   "/": "&#x2f;"
 };
 
-var _ESCAPE_REGEX = new RegExp('[&><\\\'/]');
+RegExp _ESCAPE_REGEX = new RegExp('[&><\\\'/]');
 
 //String _escaper(Match match) {
 //  return _ESCAPE_LOOKUP[match.group(0)];
